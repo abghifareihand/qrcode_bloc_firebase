@@ -1,0 +1,9 @@
+part of 'router.dart';
+
+abstract class Routes {
+  static const home = 'home';
+  static const login = 'login';
+  static const products = 'products';
+  static const detailProduct = 'detailProduct';
+  static const error = 'error';
+}

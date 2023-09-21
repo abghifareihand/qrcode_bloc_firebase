@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:qrcode_bloc_firebase/routes/router.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,13 +16,13 @@ class HomePage extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                context.go('/login');
+                context.goNamed(Routes.login);
               },
               child: const Text('Login Page'),
             ),
             ElevatedButton(
               onPressed: () {
-                context.go('/products');
+                context.goNamed(Routes.products);
               },
               child: const Text('Product Page'),
             ),

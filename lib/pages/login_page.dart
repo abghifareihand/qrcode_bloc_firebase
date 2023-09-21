@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:qrcode_bloc_firebase/routes/router.dart';
+
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -19,7 +20,7 @@ class LoginPage extends StatelessWidget {
                 backgroundColor: Colors.blueGrey,
               ),
               onPressed: () {
-                context.go('/');
+                context.goNamed(Routes.home);
               },
               child: const Text('Back to Home'),
             ),

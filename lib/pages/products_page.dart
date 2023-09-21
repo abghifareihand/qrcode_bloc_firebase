@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:qrcode_bloc_firebase/routes/router.dart';
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({super.key});
@@ -15,12 +15,18 @@ class ProductsPage extends StatelessWidget {
         itemBuilder: (context, index) {
           return ListTile(
             onTap: () {
-              context.go('/products/${index + 1}');
+              context.goNamed(
+                Routes.detailProduct,
+                pathParameters: {
+                  'productId': '${index + 1}',
+                },
+              );
             },
             leading: CircleAvatar(
               child: Text('${index + 1}'),
             ),
             title: Text('Product ${index + 1}'),
+            subtitle: Text('Description product ${index + 1}'),
           );
         },
       ),
