@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qrcode_bloc_firebase/bloc/auth/auth_bloc.dart';
+import 'package:qrcode_bloc_firebase/bloc/product/product_bloc.dart';
 import 'package:qrcode_bloc_firebase/firebase_options.dart';
 import 'routes/router.dart';
 
@@ -18,8 +19,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ProductBloc(),
+        ),
+      ],
       child: MaterialApp.router(
         routerConfig: router,
       ),

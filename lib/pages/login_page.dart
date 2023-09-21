@@ -78,10 +78,9 @@ class _LoginPageState extends State<LoginPage> {
                 }
               },
               builder: (context, state) {
-                if (state is AuthStateLoading) {
-                  return const Text('Loading...');
-                }
-                return const Text('Login');
+                return Text(
+                  state is AuthStateLoading ? 'Loading...' : 'Login',
+                );
               },
             ),
           ),
