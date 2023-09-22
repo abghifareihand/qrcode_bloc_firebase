@@ -30,3 +30,12 @@ class DeleteProductEvent extends ProductEvent {
     required this.id,
   });
 }
+
+class ExportProductEvent extends ProductEvent {}
+
+class DetailProductEvent extends ProductEvent {
+  final String id;
+  DetailProductEvent(
+    this.id,
+  );
+}

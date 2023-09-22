@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qrcode_bloc_firebase/bloc/auth/auth_bloc.dart';
+import 'package:qrcode_bloc_firebase/bloc/product/product_bloc.dart';
 import 'package:qrcode_bloc_firebase/routes/router.dart';
 
 class HomePage extends StatelessWidget {
@@ -39,12 +41,23 @@ class HomePage extends StatelessWidget {
             case 2:
               title = 'QR Code';
               icon = Icons.qr_code;
-              onTap = () {};
+              onTap = () async {
+                String barcode = await FlutterBarcodeScanner.scanBarcode(
+                  "#000000",
+                  "CANCEL",
+                  true,
+                  ScanMode.QR,
+                );
+
+                print(barcode);
+              };
               break;
             case 3:
               title = 'Print PDF';
               icon = Icons.document_scanner_rounded;
-              onTap = () {};
+              onTap = () {
+                context.read<ProductBloc>().add(ExportProductEvent());
+              };
               break;
             default:
           }
@@ -57,14 +70,31 @@ class HomePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 50,
-                    width: 50,
-                    child: Icon(
-                      icon,
-                      size: 50,
-                    ),
-                  ),
+                  (index == 3)
+                      ? BlocConsumer<ProductBloc, ProductState>(
+                          listener: (context, state) {},
+                          builder: (context, state) {
+                            if (state is ProductLoadingExport) {
+                              return const CircularProgressIndicator();
+                            }
+                            return SizedBox(
+                              height: 50,
+                              width: 50,
+                              child: Icon(
+                                icon,
+                                size: 50,
+                              ),
+                            );
+                          },
+                        )
+                      : SizedBox(
+                          height: 50,
+                          width: 50,
+                          child: Icon(
+                            icon,
+                            size: 50,
+                          ),
+                        ),
                   const SizedBox(
                     height: 10.0,
                   ),
