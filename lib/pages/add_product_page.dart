@@ -90,7 +90,7 @@ class _AddProductPageState extends State<AddProductPage> {
             },
             child: BlocConsumer<ProductBloc, ProductState>(
               listener: (context, state) {
-                if (state is ProductLoaded) {
+                if (state is ProductLoadedAdd) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('Success add product'),
@@ -112,7 +112,7 @@ class _AddProductPageState extends State<AddProductPage> {
               },
               builder: (context, state) {
                 return Text(
-                    state is ProductLoading ? 'Loading...' : 'Add Product');
+                    state is ProductLoadingAdd ? 'Loading...' : 'Add Product');
               },
             ),
           ),

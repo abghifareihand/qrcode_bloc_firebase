@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:qrcode_bloc_firebase/models/product_model.dart';
 import 'package:qrcode_bloc_firebase/pages/add_product_page.dart';
 import 'package:qrcode_bloc_firebase/pages/detail_product_page.dart';
 import 'package:qrcode_bloc_firebase/pages/error_page.dart';
@@ -38,9 +39,8 @@ final router = GoRouter(
               path: ':productId',
               name: Routes.detailProduct,
               builder: (context, state) => DetailProductPage(
-                id: state.pathParameters['productId'].toString(),
-                data: state.pathParameters,
-
+                state.pathParameters['productId'].toString(),
+                state.extra as ProductModel,
                 // Add the missing argument here
               ),
             ),

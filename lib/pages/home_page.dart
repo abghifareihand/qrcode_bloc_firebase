@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
             case 1:
               title = 'List Product';
               icon = Icons.list_alt_rounded;
-              onTap = () {};
+              onTap = () => context.goNamed(Routes.products);
               break;
             case 2:
               title = 'QR Code';
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
               onTap = () {};
               break;
             case 3:
-              title = 'Catalog';
+              title = 'Print PDF';
               icon = Icons.document_scanner_rounded;
               onTap = () {};
               break;
